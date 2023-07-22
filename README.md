@@ -1,13 +1,13 @@
 # classicCppCases
 一些经典的c++项目或案例的学习
 
-## [案例一: 贪吃蛇]("https://github.com/SAI-h/classicCppCases/tree/main/GluttonousSnake")
+## 案例一: 贪吃蛇(GluttonousSnake)
 ### 编译方式
-``` shell
+```shell
 g++ demo.cpp snake.cpp graph.cpp brush.cpp food.cpp -o demo
 ```
 ### 项目运行
-``` shell
+```shell
 ./demo
 ```
 ### 游戏规则
