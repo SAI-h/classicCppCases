@@ -22,10 +22,13 @@ int main(int argc, char* argv[]) {
         fout.open("chatClint/UsrData.dat", std::ios::out|std::ios::app);
         srand(time(NULL));
         std::string pwd = "";
-        while(pwd.size() < 16) {    // 生成16位的随机密码,供用户登录使用
+       while(pwd.size() < 16) {    // 生成16位的随机密码,供用户登录使用
             char append = rand() % 93 + 33;
-            if(append == '(') append = '[';         // linux5.0之后，命令是不能带有括号'('和')',因此进行替换
-            else if(append == ')') append = ']';
+            // 替换控制台输入会产生奇怪效果的字符
+            if(append == ')' || append == '(' || append == '$' || append == '>' || append == '<'
+            || append == '|' || append == '&' || append == '\'' || append == '"' || append == '\\') append = '0';
+            // if(append == '(') append = '[';         // linux5.0之后，命令是不能带有括号'('和')',因此进行替换
+            // else if(append == ')') append = ']';
             pwd += append;
         }
         fout << usr << ' ' << pwd << std::endl;
