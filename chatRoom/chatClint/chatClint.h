@@ -7,26 +7,21 @@
 
 class ChatClint :public NetUnity{
     public:
-        enum {
-            START = 0,
-            RUNNING = 1
-        };
-        typedef struct{
+        typedef struct {                            // 用于规范使用传入线程函数的参数
             ChatClint* ptr;
             int sock;
-        }argList;
+        } argList;
         ChatClint(const char* netAddr, const char* port, const std::string UsrName);
-        bool connectServer();
-        int recvData(int targetSockID) override;
-        int sendData(int targetSockID) override;
-        void threadMaking();
-        static void* handleRecv(void* arg);
-        static void* handleSend(void* arg);
+        bool connectServer();                       // 和服务器建立连接
+        int recvData(int targetSockID) override;    // 接收来自于服务器端的数据
+        int sendData(int targetSockID) override;    // 将数据发送至服务器端
+        void threadMaking();                        // 创建读写线程
+        static void* handleRecv(void* arg);         // 处理读线程的服务函数
+        static void* handleSend(void* arg);         // 处理写线程的服务函数
     private:
-        sockaddr_in serv_addr;
-        pthread_t recvThread, sendThread;
-        int status;
-        std::string UsrName;
+        sockaddr_in serv_addr;                      // 服务器端的网络地址
+        pthread_t recvThread, sendThread;           // 读写线程的线程号
+        std::string UsrName;                        // 存储当前用户的用户名
 };
 
 #endif // _ChatClint_
