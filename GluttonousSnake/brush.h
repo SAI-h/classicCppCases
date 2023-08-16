@@ -19,7 +19,6 @@ class Brush {   //画刷,绘图工具类
         void printf_cyan(const char*);
 
         void printf_pink(const bool, const int);    // 第一个参数仅为了区分传参为int还是char,在实现上无实际作用
-        void printf_yellow(const bool, const int);
 };
 
 #endif // _Brush_
